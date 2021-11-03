@@ -93,6 +93,11 @@ export class GameInstance {
 
     Render.run(render);
 
+    render.canvas.width = document.documentElement.clientWidth;
+    render.canvas.height = render.canvas.width * 760 / 750;
+    const ctx: any = render.canvas.getContext("2d");
+    ctx.scale(render.canvas.width / 750, render.canvas.height / 760);
+
     this.runnerIntervalHandler = setInterval(() => {
       Matter.Engine.update(this.engine!, 1000 / 60);
     }, 1000 / 60);
