@@ -37,17 +37,21 @@ class HomeComponentInner extends React.PureComponent<RouteComponentProps<HomeRou
       if (params.key2) key2 = decodeURIComponent(params.key2);
       let encodeData = "";
       if (params.encodeData) encodeData = decodeURIComponent(params.encodeData);
+      let seed = "";
+      if (params.seed) seed = decodeURIComponent(params.seed);
+      let ballCount = "10";
+      if(params.ballCount) ballCount = params.ballCount;
 
       this.state = {
         key1,
         key2,
         encodeData,
-        userSeed: '',
+        userSeed: seed,
         decodeData: '',
         finalResult: '',
         timestamp: '',
         convertDate: '',
-        ballCount: '25'
+        ballCount
       };
     }
   }
@@ -136,12 +140,14 @@ class HomeComponentInner extends React.PureComponent<RouteComponentProps<HomeRou
           <div className={styles.resultStyle}>{this.state.decodeData}</div>
           <div>Final Result(Add Seed)</div>
           <div className={styles.resultStyle}>{this.state.finalResult}</div>
-          <div style={{ paddingTop: 50 }}>Verify timestamp</div>
+          <div style={{ paddingTop: 20 }}>Verify timestamp</div>
           <div>
             <input style={{ width: 250 }} type="text" value={this.state.timestamp} onChange={this.didChanged} data-keyname="timestamp"></input>
             <button type="button" onClick={this.convertTimestamp}>Convert</button>
           </div>
           <div>{this.state.convertDate && this.state.convertDate.toString()}</div>
+          <br />
+          <div>Source Code: https://github.com/robert-bitguild/plinko-anti-cheat-verify</div>
         </div>
 
       </div></div>;

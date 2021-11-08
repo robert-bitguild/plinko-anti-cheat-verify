@@ -92,9 +92,12 @@ export class GameInstance {
     });
 
     Render.run(render);
-
-    render.canvas.width = document.documentElement.clientWidth;
-    render.canvas.height = render.canvas.width * 760 / 750;
+    let determineWidth = document.documentElement.clientWidth;
+    if (determineWidth > 400) {
+      determineWidth = 400;
+    }
+    render.canvas.width = determineWidth;
+    render.canvas.height = determineWidth * 760 / 750;
     const ctx: any = render.canvas.getContext("2d");
     ctx.scale(render.canvas.width / 750, render.canvas.height / 760);
 
